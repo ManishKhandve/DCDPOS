@@ -8,6 +8,7 @@ import os
 import subprocess
 import platform
 from datetime import datetime
+import time
 
 DEVICE_NAME = "a"  # Change this for each device (a, b, c, etc.) CUSTOME NAME
 CENTRAL_SERVER_IP = "127.0.0.1"  # Change to your main PC IP CENTRAL PRASER IP
@@ -142,7 +143,7 @@ def test():
     try:
         import pyautogui
         screen_size = pyautogui.size()
-        capabilities["pyautogui"] = {"available": True, "screen_size": screen_size}
+        capabilities["pyautogui"] = {"available": True, "screen_size": list(screen_size)}
     except Exception as e:
         capabilities["pyautogui"] = {"available": False, "error": str(e)}
    
@@ -202,24 +203,40 @@ def run_command():
 
 def register_with_central():
     """Register this device with the central server"""
-    try:
-        # Get local IP
-        ip = socket.gethostbyname(socket.gethostname())
-       
-        # Register with central server
-        response = requests.post(
-            f"http://{CENTRAL_SERVER_IP}:5000/register",
-            json={"name": DEVICE_NAME, "ip": ip, "platform": platform.system()},
-            timeout=5
-        )
-       
-        if response.status_code == 200:
-            print(f"[{DEVICE_NAME}] Successfully registered with central parser at {ip}")
-        else:
-            print(f"[{DEVICE_NAME}] Registration failed: {response.status_code}")
+    max_retries = 5
+    retry_delay = 2  # seconds
+    
+    for attempt in range(1, max_retries + 1):
+        try:
+            # Get local IP
+            ip = socket.gethostbyname(socket.gethostname())
            
-    except Exception as e:
-        print(f"[{DEVICE_NAME}] Failed to register with central server: {e}")
+            # Register with central server
+            response = requests.post(
+                f"http://{CENTRAL_SERVER_IP}:5000/register",
+                json={"name": DEVICE_NAME, "ip": ip, "platform": platform.system()},
+                timeout=5
+            )
+           
+            if response.status_code == 200:
+                print(f"[{DEVICE_NAME}] Successfully registered with central parser at {ip}")
+                return True
+            else:
+                print(f"[{DEVICE_NAME}] Registration failed: {response.status_code}")
+                
+        except requests.exceptions.ConnectionError:
+            print(f"[{DEVICE_NAME}] Connection failed (attempt {attempt}/{max_retries}). Is the central server running at {CENTRAL_SERVER_IP}:5000?")
+        except requests.exceptions.Timeout:
+            print(f"[{DEVICE_NAME}] Connection timeout (attempt {attempt}/{max_retries})")
+        except Exception as e:
+            print(f"[{DEVICE_NAME}] Failed to register with central server: {e}")
+        
+        if attempt < max_retries:
+            print(f"[{DEVICE_NAME}] Retrying in {retry_delay} seconds...")
+            time.sleep(retry_delay)
+    
+    print(f"[{DEVICE_NAME}] WARNING: Failed to register after {max_retries} attempts. Device agent will still run but won't receive commands.")
+    return False
 
 if __name__ == '__main__':
     print(f"[{DEVICE_NAME}] Starting DCDPOS Device Agent with FULL OS ACCESS...")
