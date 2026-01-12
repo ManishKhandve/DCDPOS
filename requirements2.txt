@@ -1,0 +1,5 @@
+﻿flask
+requests
+pyautogui
+psutil
+pillow
