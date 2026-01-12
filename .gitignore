@@ -32,6 +32,7 @@ screenshot_*.png
 
 # Environment variables
 .env
+config.py
 
 # IDE
 .vscode/
