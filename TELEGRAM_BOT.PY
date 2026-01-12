@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 import requests
 
-BOT_TOKEN = "8117998371:AAHNKV2FWzK27ahEh9qkLhQI1RoQQED6Ln8"  # Replace with your real token TELEBOT
+BOT_TOKEN = "Your-bot-token"  # Replace with your real token TELEBOT
 CENTRAL_PARSER_URL = "http://127.0.0.1:5000/command"  # Update this if needed CENTRAL PARSER
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
