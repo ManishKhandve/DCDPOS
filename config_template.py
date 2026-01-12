@@ -1,3 +1,0 @@
-# Configuration file - DO NOT COMMIT THIS FILE
-BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
-CENTRAL_PARSER_URL = "http://127.0.0.1:5000/command"
