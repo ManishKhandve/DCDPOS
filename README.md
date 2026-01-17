@@ -4,9 +4,9 @@ A distributed computer automation system that lets you control multiple devices 
 
 ---
 
-## ⚠️ SECURITY WARNING
+## SECURITY WARNING
 
-> **🔴 NO SECURITY MEASURES IMPLEMENTED**
+> **NO SECURITY MEASURES IMPLEMENTED**
 > 
 > This project is a proof-of-concept and does **NOT** include any security features:
 > - No authentication or authorization
@@ -65,26 +65,26 @@ A distributed computer automation system that lets you control multiple devices 
 
 ## Current Limitations
 
-> ⚠️ **This is a proof-of-concept with limited functionality**
+> **This is a proof-of-concept with limited functionality**
 
 **What it CAN do:**
-- ✅ Open predefined applications (Chrome, VS Code, Notepad, Figma, Spotify, etc.)
-- ✅ Open websites (YouTube, GitHub, Gmail)
-- ✅ Search on Google/YouTube
-- ✅ Take screenshots
-- ✅ System actions (shutdown, restart, lock screen)
-- ✅ Media controls (play/pause, volume, next/previous track)
-- ✅ Basic automation (type text, press keys, click, scroll)
-- ✅ File operations (create folder, list files)
-- ✅ System monitoring (battery, disk usage)
+- Open predefined applications (Chrome, VS Code, Notepad, Figma, Spotify, etc.)
+- Open websites (YouTube, GitHub, Gmail)
+- Search on Google/YouTube
+- Take screenshots
+- System actions (shutdown, restart, lock screen)
+- Media controls (play/pause, volume, next/previous track)
+- Basic automation (type text, press keys, click, scroll)
+- File operations (create folder, list files)
+- System monitoring (battery, disk usage)
 
 **What it CANNOT do (yet):**
-- ❌ Interactive conversations or context-aware responses
-- ❌ Complex multi-step workflows
-- ❌ Read screen content or understand what's displayed
-- ❌ Interact with application contents (click buttons inside apps, fill forms)
-- ❌ Remember previous commands or maintain session state
-- ❌ Custom or dynamic command generation beyond predefined patterns
+- Interactive conversations or context-aware responses
+- Complex multi-step workflows
+- Read screen content or understand what's displayed
+- Interact with application contents (click buttons inside apps, fill forms)
+- Remember previous commands or maintain session state
+- Custom or dynamic command generation beyond predefined patterns
 
 The LLM is only used to **map natural language to predefined command patterns**, not to generate arbitrary code or interact with applications intelligently.
 
@@ -92,12 +92,12 @@ The LLM is only used to **map natural language to predefined command patterns**,
 
 ## Features
 
-- 🤖 **Natural Language Processing** - Uses Ollama (local LLM like Llama 3) to understand commands
-- 🖥️ **Multi-Device Control** - Control multiple computers from one Telegram interface
-- 📱 **Telegram Integration** - Send commands from anywhere via Telegram
-- 🔧 **48+ Predefined Commands** - Applications, web, files, system, automation
-- 🏠 **100% Local** - No cloud APIs, everything runs on your network
-- 🔌 **Cross-Platform** - Works on Windows, Linux, and macOS
+- **Natural Language Processing** - Uses Ollama (local LLM like Llama 3) to understand commands
+- **Multi-Device Control** - Control multiple computers from one Telegram interface
+- **Telegram Integration** - Send commands from anywhere via Telegram
+- **48+ Predefined Commands** - Applications, web, files, system, automation
+- **100% Local** - No cloud APIs, everything runs on your network
+- **Cross-Platform** - Works on Windows, Linux, and macOS
 
 ### Supported Commands
 
@@ -225,7 +225,7 @@ DEVICE_NAME = "alpha"  # Unique name for each device (alpha, beta, gamma, etc.)
 CENTRAL_SERVER_IP = "10.39.103.1"  # Your main PC's IP address (NOT 127.0.0.1)
 ```
 
-> ⚠️ **Important:** `CENTRAL_SERVER_IP` should be the actual IP of your main PC, not `127.0.0.1`, unless the device agent runs on the same machine.
+> **Important:** `CENTRAL_SERVER_IP` should be the actual IP of your main PC, not `127.0.0.1`, unless the device agent runs on the same machine.
 
 ---
 
